@@ -1,0 +1,6 @@
+License: CreativeCommons Attribution 3.0 Unported
+
+Explanation: this tweak is cut into two parts as the two dylibs has to be loaded separately: the client (which gets notified by libactivator)
+has to be loaded into SpringBoard, the server (which performs the actual actions) has to be loaded into the DragonDictation app.
+The client and the server communicate via CPDitributedMessagingCenter.
+
