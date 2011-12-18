@@ -76,14 +76,42 @@
 @end
 
 
+@interface CerealClientSMS: CerealClient
+@end
+
+@implementation CerealClientSMS
+
+- (void) activator:(LAActivator *)sender receiveEvent:(LAEvent *)event {
+	[center sendMessageName:@"org.h2co3.cerealserver.sms" userInfo:NULL];
+}
+
+@end
+
+
+@interface CerealClientPasteboard: CerealClient
+@end
+
+@implementation CerealClientPasteboard
+
+- (void) activator:(LAActivator *)sender receiveEvent:(LAEvent *)event {
+	[center sendMessageName:@"org.h2co3.cerealserver.copy" userInfo:NULL];
+}
+
+@end
+
+
 initializer void init() {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	CerealClientRecord *recordClient = [[CerealClientRecord alloc] init];
 	CerealClientTwitter *twitterClient = [[CerealClientTwitter alloc] init];
 	CerealClientFacebook *facebookClient = [[CerealClientFacebook alloc] init];
+	CerealClientSMS *smsClient = [[CerealClientSMS alloc] init];
+	CerealClientPasteboard *pasteboardClient = [[CerealClientPasteboard alloc] init];
 	[[LAActivator sharedInstance] registerListener:recordClient forName:@"org.h2co3.cereal.record"];
 	[[LAActivator sharedInstance] registerListener:twitterClient forName:@"org.h2co3.cereal.twitter"];
 	[[LAActivator sharedInstance] registerListener:facebookClient forName:@"org.h2co3.cereal.facebook"];
+	[[LAActivator sharedInstance] registerListener:smsClient forName:@"org.h2co3.cereal.sms"];
+	[[LAActivator sharedInstance] registerListener:pasteboardClient forName:@"org.h2co3.cereal.pasteboard"];
 	[pool release];
 }
 

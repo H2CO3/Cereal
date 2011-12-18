@@ -16,7 +16,8 @@ LDFLAGS = -isysroot /User/sysroot \
 	  -lactivator \
 	  -framework Foundation \
 	  -framework AppSupport \
-	  -framework UIKit
+	  -framework UIKit \
+	  -framework MessageUI
 
 CLIENT_OBJECTS = CerealClient.o
 SERVER_OBJECTS = CerealServer.o
